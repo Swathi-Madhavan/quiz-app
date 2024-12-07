@@ -1,13 +1,11 @@
-import React from "react";
-import { QuizAppColorsProps } from "../Themes/ColorPallets";
 import { Box } from "@mui/material";
-import BackGroundImage from "../assets/BackGroundImage";
-import Languages from "../UIComponents/Languages";
-import { LanguagesData } from "../data";
+import { QuizAppColorsProps } from "../Themes/ColorPallets";
+import QuestionDiv from "../StyledComponents/QuestionDiv";
+import Options from "../StyledComponents/Options";
+import NextButton from "../StyledComponents/NextButton";
+import JavaBackGroundImage from "../assets/JavaBackGroundImage";
 
-console.log("Log from Main Activity");
-
-function MainActivity() {
+function Java() {
   return (
     <div
       style={{
@@ -30,11 +28,15 @@ function MainActivity() {
           borderBottomRightRadius: "18px",
         }}
       >
-        <BackGroundImage style={{ width: "100%", height: "100%" }} />
+       <JavaBackGroundImage style={{ width: "100%", height: "100%"}}/> 
       </Box>
-      <Languages data={LanguagesData}/>
+      {/* <QuestionDiv /> */}
+      <Options />
+      {/* <NextButton /> */}
+      
     </div>
   );
 }
 
-export default MainActivity;
+
+export default Java;

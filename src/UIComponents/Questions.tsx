@@ -1,11 +1,21 @@
 import { Box } from "@mui/material";
 import { QuizAppColorsProps } from "../Themes/ColorPallets";
-import CplusBackGroundImage from "../assets/CplusBackGroundImage";
 import QuestionDiv from "../StyledComponents/QuestionDiv";
 import Options from "../StyledComponents/Options";
 import NextButton from "../StyledComponents/NextButton";
+import { CplusPlusQuestionsItems, CplusPlusQuestionsProps } from "../model";
+import { data } from "react-router-dom";
+interface QuestionsProps {
+  NextClickCount: number;
+  onhandleNextClickChange: () => void;
+  Questiondata: CplusPlusQuestionsProps;
+}
 
-function Questions() {
+function Questions({
+  NextClickCount,
+  onhandleNextClickChange,
+  Questiondata,
+}: Readonly<QuestionsProps>) {
   return (
     <div
       style={{
@@ -27,13 +37,14 @@ function Questions() {
           WebkitBorderBottomLeftRadius: "18px",
           borderBottomRightRadius: "18px",
         }}
-      >
-        <CplusBackGroundImage style={{ width: "100%", height: "100%" }}/>
-      </Box>
-      <QuestionDiv />
+      ></Box>
+      <QuestionDiv
+        NextClickCount={NextClickCount}
+        onhandleNextClickChange={onhandleNextClickChange}
+        QuestionDivData={Questiondata}
+      />
       <Options />
-      <NextButton />
-      
+      <NextButton onhandleNextClickChange={onhandleNextClickChange} />
     </div>
   );
 }

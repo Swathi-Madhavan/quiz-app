@@ -1,25 +1,28 @@
 import { Box, Typography } from "@mui/material";
 import { QuizAppColorsProps } from "../Themes/ColorPallets";
-import CplusplusImage from "../assets/CplusplusImage";
-import JavaImage from "../assets/JavaImage";
-import PythonImage from "../assets/PythonImage";
+import { useNavigate } from "react-router-dom";
+import { LanguagesItems } from "../model";
 
-const languages = [
-  {
-    name: "C++",
-    Image: <CplusplusImage style={{ width: "100%", height: "100%"}}/>
-  },
-  {
-    name: "Java",
-    Image: <JavaImage style={{ width: "100%", height: "100%"}}/>
-  },
-  {
-    name: "Python",
-    Image: <PythonImage style={{ width: "100%", height: "100%"}}/>
-  }
-];
 
-function Languages() {
+
+function Languages({ data }:Readonly<LanguagesItems>) {
+    const navigate = useNavigate();
+
+  function handleClick(lan : string) {
+    if( lan === "C++")
+    {
+        navigate("/C++");
+    }
+    else if( lan === "Java")
+    {
+      navigate("/java")
+    }
+    else
+    {
+      navigate("/python");
+    }
+}
+
   return (
     <Box
       sx={{
@@ -38,8 +41,9 @@ function Languages() {
         borderRadius: "15px",
       }}
     >
-      {languages.map((item, id) => (
-        <div
+      {data.map((item, index) => (
+        <button
+          onClick={() => handleClick(item.name)}
           key={item.name}
           style={{
             width: "316px",
@@ -51,13 +55,15 @@ function Languages() {
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-evenly"
+            justifyContent: "space-evenly",
+            cursor: "pointer",
+            border: "none"
           }}
         >
           <div style={{
             width: "90px",
             height: "90px"
-          }}>
+          }} >
           {item.Image}
           </div>
           <Typography sx={{
@@ -70,7 +76,7 @@ function Languages() {
           }}>
           {item.name}
           </Typography>
-        </div>
+        </button>
       ))}
     </Box>
   );
